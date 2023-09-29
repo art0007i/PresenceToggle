@@ -1,5 +1,5 @@
 using HarmonyLib;
-using NeosModLoader;
+using ResoniteModLoader;
 using System;
 using System.Linq;
 using System.Reflection;
@@ -9,15 +9,15 @@ using FrooxEngine;
 
 namespace PresenceToggle
 {
-    public class PresenceToggle : NeosMod
+    public class PresenceToggle : ResoniteMod
     {
         public override string Name => "PresenceToggle";
         public override string Author => "art0007i";
-        public override string Version => "1.0.0";
+        public override string Version => "2.0.0";
         public override string Link => "https://github.com/art0007i/PresenceToggle/";
 
-        [AutoRegisterConfigKey]
-        private static readonly ModConfigurationKey<bool> KEY_DISCORD_RPC = new ModConfigurationKey<bool>("discord_rpc_enable", "If true discord rpc will be disabled", () => true);
+        //[AutoRegisterConfigKey]
+        //private static readonly ModConfigurationKey<bool> KEY_DISCORD_RPC = new ModConfigurationKey<bool>("discord_rpc_enable", "If true discord rpc will be disabled", () => true);
         [AutoRegisterConfigKey]
         private static readonly ModConfigurationKey<bool> KEY_STEAM_RPC = new ModConfigurationKey<bool>("steam_rpc_enable", "If true steam rpc will be disabled", () => true);
 
@@ -30,6 +30,7 @@ namespace PresenceToggle
             harmony.PatchAll();
         }
 
+        /* commented out for now in case discord support is added to resonite
         [HarmonyPatch(typeof(DiscordPlatformConnector))]
         class DiscordPlatformConnector_Patch
         {
@@ -46,6 +47,8 @@ namespace PresenceToggle
                 return !disable;
             }
         }
+        */
+
         [HarmonyPatch(typeof(SteamConnector))]
         class SteamPlatformConnector_Patch
         {

@@ -1,6 +1,6 @@
 # PresenceToggle
 
-A [ResoniteModLoader](https://github.com/resonite-modding-group/ResoniteModLoader) mod for [Resonite](https://resonite.com/) that allows you to toggle steam rich presence.<br>
+A [ResoniteModLoader](https://github.com/resonite-modding-group/ResoniteModLoader) mod for [Resonite](https://resonite.com/) that allows you to toggle steam and discord rich presence.<br>
 Both apps will still report that you are *playing* the game, but not what worlds you are in.
 
 ## Installation

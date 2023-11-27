@@ -1,11 +1,8 @@
 using HarmonyLib;
 using ResoniteModLoader;
-using System;
 using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
-using System.Collections.Generic;
 using FrooxEngine;
+using FrooxEngine.Interfacing;
 
 namespace PresenceToggle
 {
@@ -13,11 +10,11 @@ namespace PresenceToggle
     {
         public override string Name => "PresenceToggle";
         public override string Author => "art0007i";
-        public override string Version => "2.0.0";
+        public override string Version => "2.0.1";
         public override string Link => "https://github.com/art0007i/PresenceToggle/";
 
-        //[AutoRegisterConfigKey]
-        //private static readonly ModConfigurationKey<bool> KEY_DISCORD_RPC = new ModConfigurationKey<bool>("discord_rpc_enable", "If true discord rpc will be disabled", () => true);
+        [AutoRegisterConfigKey]
+        private static readonly ModConfigurationKey<bool> KEY_DISCORD_RPC = new ModConfigurationKey<bool>("discord_rpc_enable", "If true discord rpc will be disabled", () => true);
         [AutoRegisterConfigKey]
         private static readonly ModConfigurationKey<bool> KEY_STEAM_RPC = new ModConfigurationKey<bool>("steam_rpc_enable", "If true steam rpc will be disabled", () => true);
 
@@ -30,8 +27,7 @@ namespace PresenceToggle
             harmony.PatchAll();
         }
 
-        /* commented out for now in case discord support is added to resonite
-        [HarmonyPatch(typeof(DiscordPlatformConnector))]
+        [HarmonyPatch(typeof(DiscordConnector))]
         class DiscordPlatformConnector_Patch
         {
             [HarmonyPrefix]
@@ -41,13 +37,12 @@ namespace PresenceToggle
                 bool disable = config.GetValue(KEY_DISCORD_RPC);
                 if (disable)
                 {
-                    var discord = Engine.Current.PlatformInterface.GetConnectors<DiscordPlatformConnector>().First();
+                    var discord = Engine.Current.PlatformInterface.GetConnectors<DiscordConnector>().First();
                     discord.ClearCurrentStatus();
                 }
                 return !disable;
             }
         }
-        */
 
         [HarmonyPatch(typeof(SteamConnector))]
         class SteamPlatformConnector_Patch

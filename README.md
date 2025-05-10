@@ -1,3 +1,5 @@
+# This mod is no longer necessary as it was added to resonite in the 2024.5.7.505 update.
+
 # PresenceToggle
 
 A [ResoniteModLoader](https://github.com/resonite-modding-group/ResoniteModLoader) mod for [Resonite](https://resonite.com/) that allows you to toggle steam and discord rich presence.<br>
